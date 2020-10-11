@@ -12,51 +12,41 @@ def clean(data, irrelevant):
 
 def search(X1, word):
     ans = 0
+    j = 0
+    index = []
     ans_val = []
 
     for i in X1:
         if word in i:
+            index.append(j)
             ans = ans + 1
             ans_val.append(i)
+        j = j + 1
 
-    return ans, ans_val
+    return ans, ans_val, index
 
 
 irrelevant_words = {".", ',', '"\"', ";", ":", " "}
 cleanData = clean(movie, irrelevant_words)
 
-
 document = cleanData.splitlines()
+words_split = []
 
-
-def split_line(document):
-    document = document.split()
-    for word in document:
-        print(document)
-
-document = split_line(document)
-#for terms in document:
-    #term = terms.split()
-
-
-# print(docId[0])
-# print(docId)
-
-#for docId in range(len(document)):
-    #print(document, end=str(docId))
-    #print(" ")
+for i in range(len(document)):
+    a = document[i].split()
+    words_split.append(a)
 
 word = input("Enter your search : ")
-# Assume this is a document
 
-# print(data, '\n', word)
 
-No_of_result, result_val = search(document, word)
+No_of_result, result_val, index = search(document, word)
 
 for x in result_val:
     print('\n', '================================== New result =================================', '\n')
     print(x)
-#
-print('No_of_result = ', No_of_result)
 
-
+print()
+print('No_of_result = ', No_of_result, end=" ")
+print('Document INDEX : ', index, end=" ")
+print(" ")
+print(' THE END ',end=" ")
